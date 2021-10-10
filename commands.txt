@@ -1,0 +1,18 @@
+hdfs dfs -mkdir /test
+hdfs dfs -mkdir /test/test
+hdfs dfs -touchz /test/test/test.txt
+hdfs dfs -rm  -skipTrash /test/test/test.txt
+hdfs dfs -rm -r -skipTrash /test
+
+hdfs dfs -mkdir /test
+hdfs dfs -put commands.txt /test/
+hdfs dfs -cat /test/commands.txt
+hdfs dfs -tail /test/commands.txt
+hdfs dfs -head /test/commands.txt
+hdfs dfs -cp /test/commands.txt /
+
+hdfs dfs -setrep -w 1 /test/commands.txt # 13 секунд
+hdfs dfs -setrep -w 3 /test/commands.txt # 14 секунд
+
+hdfs fsck /test/ -files -blocks -locations
+hdfs fsck -blockId blk_1073741830
