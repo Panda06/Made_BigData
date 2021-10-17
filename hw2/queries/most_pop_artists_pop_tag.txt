@@ -1,0 +1,14 @@
+SELECT t2.artist_lastfm, t2.scrobbles_lastfm
+FROM hue__tmp_artists t2
+WHERE t2.tags_lastfm IN (
+    SELECT t1.tags_lastfm
+    FROM (
+             SELECT tags_lastfm, count(*) as tag_count
+             FROM hue__tmp_artists
+             WHERE tags_lastfm <> ''
+             GROUP BY tags_lastfm
+             ORDER BY tag_count desc
+             LIMIT 10) t1
+)
+ORDER BY t2.scrobbles_lastfm desc
+LIMIT 10

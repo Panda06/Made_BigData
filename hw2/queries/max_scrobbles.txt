@@ -1,0 +1,7 @@
+SELECT artist_lastfm
+FROM hue__tmp_artists
+WHERE scrobbles_lastfm IN (
+    SELECT
+           max(scrobbles_lastfm)
+    FROM hue__tmp_artists
+    )

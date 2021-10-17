@@ -1,0 +1,6 @@
+SELECT tags_lastfm, count(*) as tag_count
+FROM hue__tmp_artists
+where tags_lastfm <> ''
+GROUP BY tags_lastfm
+order by tag_count desc
+limit 1
